@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Google Font -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f2f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .signup-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            color: #333;
+            margin-top: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: black;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: rebeccapurple;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: rosybrown;
+        }
+
+        .redirect {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .redirect a {
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        .redirect a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="signup-container">
+        <h2>Create an Account</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label}}">Username:</label>
+                <input type="text" name="{{ form.username.name }}" class="form-control"
+                    value="{{ form.username.value}}" />
+                {% if form.username.errors %}
+                <span class="text-danger">{{ form.username.errors }}</span>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label}}">Password:</label>
+                <input type="password" name="{{ form.password1.name }}" class="form-control"
+                    value="{{ form.password1.value}}" />
+                <span class="text-danger">{{ form.password1.errors }}</span>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label}}">Re-Type Password:</label>
+                <input type="password" name="{{ form.password2.name }}" class="form-control"
+                    value="{{ form.password2.value}}" />
+                <span class="text-danger">{{ form.password2.errors }}</span>
+            </div>
+
+            <button type="submit" class="btn btn-dark">Submit</button>
+
+            <p class="redirect">Already have an account?<a href="{% url 'login' %}"</a>Login</p>
+        </form>
+</body>
+
+</html>

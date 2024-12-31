@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            color: black;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .header-right {
+            margin-left: auto; 
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .job-list {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .job-list th, .job-list td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .job-list th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        .job-item {
+            background-color: white;
+            border-radius: 8px;
+            margin: 10px 0;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .job-description {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .job-location {
+            font-size: 1em;
+            margin-top: 10px;
+            color: #888;
+        }
+
+        .job-salary {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: rebeccapurple;
+        }
+
+        .job-description-cell{
+            max-width: 400px;
+            word-wrap: break-word;
+        }
+
+        .btn {
+            background-color: rebeccapurple;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: rosybrown;
+        }
+
+        .create-job-btn {
+            background-color: rebeccapurple;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .create-job-btn:hover {
+            background-color: rosybrown;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Job Listings</h1>
+        </div>
+        <div class="header-right">
+            <a href="{% url 'logout' %}" class="btn">Logout</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <a href="{% url 'job_create' %}" class="btn create-job-btn">Create Job</a>
+
+        <h2>Available Jobs</h2>
+
+        <table class="job-list">
+            <thead>
+                <tr>
+                    <th>Job Title</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Salary Range</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in job_posts %}
+                    <tr class="job-item">
+                        <td class="job-title">{{ job.title }}</td>
+                        <td class="job-description-cell">{{ job.description }}</td>
+                        <td class="job-location">{{ job.location }}</td>
+                        <td class="job-salary">{{ job.salary_range }}</td>
+                        <td>
+                            <a href="{% url 'job_edit' job.id %}" class="btn">Edit Job</a>
+                            <a href="{% url 'job_delete' job.id %}" class="btn">Delete Job</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">No jobs available.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>

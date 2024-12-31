@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Job</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            color: black;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 95%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .btn {
+            background-color: rebeccapurple;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: rosybrown;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Edit Job Post</h1>
+    </header>
+
+    <div class="form-container">
+        <h2>Edit Job Details</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.title.id_for_label }}">Job Title</label>
+                {{ form.title }}
+                {% if form.title.errors %}
+                    <ul class="error-list">
+                        {% for error in form.title.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.description.id_for_label }}">Job Description</label>
+                {{ form.description }}
+                {% if form.description.errors %}
+                    <ul class="error-list">
+                        {% for error in form.description.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.location.id_for_label }}">Job Location</label>
+                {{ form.location }}
+                {% if form.location.errors %}
+                    <ul class="error-list">
+                        {% for error in form.location.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.salary_range.id_for_label }}">Salary Range</label>
+                {{ form.salary_range }}
+                {% if form.salary_range.errors %}
+                    <ul class="error-list">
+                        {% for error in form.salary_range.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.tags.id_for_label }}">Tags</label>
+                {{ form.tags }}
+                {% if form.tags.errors %}
+                    <ul class="error-list">
+                        {% for error in form.tags.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn">Update Job</button>
+        </form>
+    </div>
+</body>
+</html>
