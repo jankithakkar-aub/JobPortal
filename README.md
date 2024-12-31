@@ -24,4 +24,41 @@ Follow the steps below to set up and run the Job Portal application locally:
 
 ### 1. Clone the Repository
 
+````bash
+git clone https://github.com/jankithakkar-aub/JobPortal.git
+cd JobPortal
+````
 
+### 2. Install the Dependencies
+
+Create a virtual environment and install the required dependencies:
+
+````bash
+python3 -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+pip install -r requirements.txt
+````
+
+### 3. Setup Database
+
+Run migrations to set up the database schema:
+
+````bash
+python manage.py migrate
+````
+
+### 4. Create Superuser (Optional)
+
+If you want to access the Django admin, you can create a superuser:
+
+````bash
+python manage.py createsuperuser
+````
+
+### 5. Run the Development Server
+
+Start the Django development server:
+
+````bash
+python manage.py runserver
+````
