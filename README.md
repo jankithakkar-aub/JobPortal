@@ -62,3 +62,41 @@ Start the Django development server:
 ````bash
 python manage.py runserver
 ````
+Now, you can access the application at http://127.0.0.1:8000/.
+
+## Application Structure
+
+The main components of the application are as follows:
+
+1. Users: Django's built-in authentication system handles user registration, login, and management.
+2. Company Registration: A model to store details about the user's company.
+3. Job Post Management: A model to manage job postings, along with views for creating, editing, deleting, and listing job posts.
+4. Templates: HTML templates are used for rendering forms and job postings.
+
+### File And Directory Structure
+
+````bash
+JobPortal/
+│
+├── JobPortal/
+│   ├── urls.py
+│   ├── views.py
+├── jobs/
+|   ├── migrations/
+│   ├── templates/
+|   ├── urls.py
+│   ├── views.py
+|   ├── models.py
+│   ├── admin.py
+|   ├── forms.py
+├── templates/ 
+├── venv/
+├── manage.py                 
+├── requirements.txt
+└── .gitignore
+````
+
+
+
+
+
